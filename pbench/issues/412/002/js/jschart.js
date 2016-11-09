@@ -3345,7 +3345,9 @@ function set_dataset_value(chart, dataset_index, values_index) {
     chart.datasets.valid[dataset_index].dom.cursor_point.data([ chart.datasets.valid[dataset_index].values[values_index] ]);
     chart.datasets.valid[dataset_index].dom.cursor_point.attr("cx", get_chart_scaled_x)
     chart.datasets.valid[dataset_index].dom.cursor_point.attr("cy", get_chart_scaled_y_stack)
-    chart.datasets.valid[dataset_index].dom.cursor_point.classed("hidden", false);
+    if (! chart.datasets.valid[dataset_index].hidden) {
+	chart.datasets.valid[dataset_index].dom.cursor_point.classed("hidden", false);
+    }
 }
 
 function set_stacked_value(chart, value) {
