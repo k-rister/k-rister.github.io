@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg-color: #000000;
-            --clock-bg: #2d2d2d;
+            --clock-bg: #000000;
             --text-primary: #888888;
             --text-secondary: #888888;
             --text-dim: #888888;
@@ -29,7 +29,7 @@
         .container {
             text-align: center;
             background: var(--clock-bg);
-            padding: 3rem 4rem;
+            padding: 0rem 0rem;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
@@ -37,14 +37,10 @@
             min-width: 300px;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
-        }
-
         /* Clock Time Styling */
         .time-wrapper {
             position: relative;
-            margin-bottom: 1rem;
+            margin-bottom: 0.0rem;
         }
 
         .time {
@@ -58,9 +54,9 @@
         }
 
         .seconds {
-            font-size: 5rem;
+            font-size: 10rem;
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 700;
             margin-left: 0.5rem;
             vertical-align: baseline;
         }
@@ -78,9 +74,9 @@
             font-size: 4rem;
             color: var(--text-dim);
             font-weight: 400;
-            margin-top: 0.5rem;
+            margin-top: 0.0rem;
             letter-spacing: 1px;
-            border-top: 1px solid #444;
+            border-top: 2px solid #444;
             padding-top: 1.5rem;
         }
 
@@ -110,7 +106,7 @@
     <div class="container">
         <div class="time-wrapper" id="clockDisplay">
             <!-- Time is injected here via JS -->
-            <span class="time">00:00</span><span class="seconds">00</span>
+            <span class="time">00:00:</span><span class="seconds">00</span>
         </div>
         <div class="date" id="dateDisplay">
             Loading Date...
@@ -136,7 +132,7 @@
             hours = hours ? hours : 12; // the hour '0' should be '12'
 
             // Construct HTML for time to style seconds/ampm differently
-            let timeHtml = `<span class="time">${hours}:${minutes}</span><span class="seconds">${seconds}</span><span class="ampm">${ampm}</span>`;
+            let timeHtml = `<span class="time">${hours}:${minutes}:</span><span class="seconds">${seconds}</span><span class="ampm">${ampm}</span>`;
 
             clockDisplay.innerHTML = timeHtml;
 
@@ -148,7 +144,9 @@
                 day: 'numeric' 
             };
             const dateString = now.toLocaleDateString(undefined, dateOptions);
-            dateDisplay.textContent = dateString;
+            let dateHtml = `<span>&nbsp;&nbsp;${dateString}&nbsp;&nbsp;</span>`;
+
+            dateDisplay.innerHTML = dateHtml;
         }
 
         // Initialize
