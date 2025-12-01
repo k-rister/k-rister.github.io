@@ -48,14 +48,6 @@
             line-height: 1;
         }
 
-        .seconds {
-            font-size: 10rem;
-            color: var(--text-secondary);
-            font-weight: 700;
-            margin-left: 0.5rem;
-            vertical-align: baseline;
-        }
-
         .ampm {
             font-size: 3rem;
             color: var(--text-dim);
@@ -81,12 +73,6 @@
             .time {
                 font-size: 3.5rem;
             }
-            .seconds {
-                display: block;
-                font-size: 1.5rem;
-                margin-top: 0.5rem;
-                margin-left: 0;
-            }
             .date {
                 font-size: 1.1rem;
             }
@@ -98,7 +84,7 @@
     <div class="container">
         <div class="time-wrapper" id="clockDisplay">
             <!-- Time is injected here via JS -->
-            <span class="time">00:00:</span><span class="seconds">00</span>
+            <span class="time">00:00:00</span>
         </div>
         <div class="date" id="dateDisplay">
             Loading Date...
@@ -123,8 +109,8 @@
             hours = hours % 12;
             hours = hours ? hours : 12; // the hour '0' should be '12'
 
-            // Construct HTML for time to style seconds/ampm differently
-            let timeHtml = `<span class="time">${hours}:${minutes}:</span><span class="seconds">${seconds}</span><span class="ampm">${ampm}</span>`;
+            // Construct HTML for time to style AM/PM differently
+            let timeHtml = `<span class="time">${hours}:${minutes}:${seconds}</span><span class="ampm">${ampm}</span>`;
 
             clockDisplay.innerHTML = timeHtml;
 
