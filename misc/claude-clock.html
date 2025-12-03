@@ -1,0 +1,102 @@
+<!-- generated entirely by Claude.ai via interactive prompting -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Clock</title>
+    <style>
+        :root {
+            --bg-color: #333333;
+            --clock-bg: #000000;
+            --text-color: #888888;
+            --display-height: 320px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            overflow: hidden;
+        }
+        
+        .clock-container {
+            height: var(--display-height);
+            width: 100%;
+            background: var(--clock-bg);
+            text-align: center;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .time {
+            font-size: 10rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0;
+            font-family: 'Segoe UI', 'Arial', 'Helvetica', sans-serif;
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+            color: var(--text-color);
+        }
+        
+        .ampm {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-left: 0.5rem;
+        }
+        
+        .date {
+            font-size: 4rem;
+            font-weight: 400;
+            opacity: 1;
+            color: var(--text-color);
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="time" id="time">00:00:00</div>
+        <div class="date" id="date">Loading...</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            let hours = now.getHours();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const timeString = `${hours}:${minutes}:${seconds}<span class="ampm" style="margin-left: 0.5rem;">${ampm}</span>`;
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('en-US', options);
+            
+            document.getElementById('time').innerHTML = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
